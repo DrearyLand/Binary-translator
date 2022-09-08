@@ -1,7 +1,7 @@
 # Binary-translator
-Este programa busca la creacion de lo que se conoce como un traductor, entre lo que es lenguaje binario a nuestro idioma y viceversa. Con esto me refiero que podremos ingresar datos de texto y numeros, para representarlos en binario y viceversa. El proyecto consta de diferentes fases para llegar a una version final en la que traduzca todo tipo de tecla de computador a lo que es binario y viceversa.
+Este programa busca la creacion de lo que se conoce como un traductor, entre lo que es lenguaje binario a nuestro decimales o texto y viceversa. Con esto me refiero que podremos ingresar datos de texto o numeros, para representarlos en binario y viceversa. El proyecto consta de diferentes fases para llegar a una version final en la que traduzca todo tipo de tecla de computador a lo que es binario y viceversa.
 
-#Algoritmo
+# Algoritmo
 
 Entrada:
 Datos en binario o en texto
