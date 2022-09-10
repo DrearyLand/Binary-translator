@@ -56,8 +56,10 @@ def menu():
 
 #Funcion de pruebas :D
 def pruebas():
-    binario_a_decimal(110)
-        #El resultado tendria que ser 6
+    #El resultado tendria que ser 6, 7, 14
+    print(binario_a_decimal(110))
+    print(binario_a_decimal(111))
+    print(binario_a_decimal(1110))
     
 
 #pruebas()
