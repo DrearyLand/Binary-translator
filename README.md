@@ -4,22 +4,17 @@ El programa consistira de un menu en el cual te mostrara las opciiones/funciones
 
 # Algoritmo
 
-Entrada:
+## Entrada:
+* Dato entero para seleccion en el menu
+* Datos en binario o en texto
 
-Dato entero para seleccion en el menu.
-Datos en binario o en texto.
+## Proceso:
+* Preguntar al usario que dato desea ingresar para identificar el tipo de dato
+* Separar los caracteres y por metodos matematicos conseguir el valor decimal
+* Comparar cada valor decimal entre las listas de traducción
+* Obtener la respectiva traduccion de cada caracter
+* Formar nuevamente la cadena de caracteres
+* Mostrar el conjunto de caracteres en su respectiva traducción
 
-
-Proceso:
-
-Preguntar al usario que dato desea ingresar para identificar el tipo de dato.
-Separar los caracteres y por metodos matematicos conseguir el valor decimal.
-Comparar cada valor decimal entre las listas de traducción.
-Obtener la respectiva traduccion de cada caracter.
-Formar nuevamente la cadena de caracteres.
-Mostrar el conjunto de caracteres en su respectiva traducción.
-
-
-Salida:
-
-Datos obtenidos por el programa
+## Salida:
+* Datos obtenidos por el programa
