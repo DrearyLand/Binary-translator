@@ -1,65 +1,91 @@
-#Funcion para convertir de binario a decimal
-def binario_a_decimal(num):
-    #Declaracion de variables que se van a ocupar en el proceso matematico
+#Funcion para el proceso de binafrio a decimal
+def binario_a_decimal(binario):
+    #Declaracion de variables necesarias
     potencia =1
     decimal= 0
-    #Repetir hasta que el valor de la variable num sea 0 o menor
-    while num>0:
-        #Obtencion del modulo de variable num entre 10 guardada en una nueva variable
-        binario = num % 10
-        #Nuevo valor a num dividiendo num entre 10
-        num = int(num / 10)
-        #Suma del valor actual decimal al binario multiplicado por la respectiva potencia
-        decimal = decimal + binario * potencia
-        #Obtencion de la potencia susesiva para obtrener los valores de cada digito binario
+    #Repetir proceso mientras binario mayor que0
+    while binario>0:
+        #Declaramos la variable residuo para obtener el residuo de num entre 10
+        residuo = binario % 10
+        #Le damos el nuevo valor a num
+        binario = binario // 10
+        #Agregamos a la variable decimal el residuo multiplicando a la potencia
+        decimal = decimal + residuo * potencia
+        #Multiplicamos la potencia por 2
         potencia = potencia * 2
-    #Obtener el valor decimal final y mostrarlo
     return decimal
 
-#Futura funcion decimal a binario
-def decimal_a_binario():
-    binario = input("Ingrese número:")
-    print("Aqui se mostrara tu traduccion.")
+#Funcion para el proceso de decimal a binario llamando una lista vacia y el valor ingresado
+def traduccion_a_binario(modulos,decimal):
+    #Repetir proceso mientras decimal no sea 0
+    while decimal != 0: 
+        #Obtenemos el residuo de la division decim al entre 2
+        residuo = decimal%2
+        #Obtenemos el cociente de la misma division
+        cociente = decimal//2
+        #Agregamos el valor del residuo a la lista
+        modulos.append(residuo)
+        #Le asignamos el valor del cociente a decimal
+        decimal = cociente 
+    #Invertimos el orden de la lista
+    modulos_invertidos=modulos[::-1]
 
-#Funcion main
+    #Para la variable i en modulos invertidos repetir
+    for i in modulos_invertidos:
+        #Imprimir el valor de i, el cual es respectivamente cada caracter del binario 
+        print(i, end = '')
+    print()
+
+
+#Declaramos funcion main en la cual vamos a llamar las distintas funciones del programa
 def main():
-    #Dar un valor temporal a entrada para usar elwhile
-    entrada = ""
-    #Repetir mientras entrada no sea igual a 3
-    while entrada!=3:
-        #LLamar funcion menu
+    #Iniciamos un bucle para mostrar el menu y seleccionar alguna funcion
+    while True:
+        #Llamamos a la funcion menu para que muestre las opciones
         menu()
-        #Requerir nuevo valor de entrada al usuario
-        entrada = int(input(":"))
-        #Condicionales para que al usuario se le muestre lo que relativamente selecciono
+        #Entrada de datos
+        entrada = int(input())
+        #Si entrada vale 1 continuar
         if entrada==1:
-            #Entrada del valor num
-            num = int(input("Ingrese el numero binario: "))
-            #Imprimir el llamado de la funcion binario a decimal
-            print("Su valor decimal es =", binario_a_decimal(num))
+            #Entrada del dato binario
+            binario = int(input("Ingrese el numero binario: "))
+            #Imprimir el llamado de la funcion
+            print("El decimal resultante es: \n",binario_a_decimal(binario))
+        #Si entrada vale 2 continuar
         elif entrada==2:
-            #LLamar funcion decimal a binario(out of service)
-            decimal_a_binario()
+            #Entrada de dato numerico
+            decimal = int(input("Ingrese número:"))
+            #Declaracion de lista
+            modulos=[]
+            #Imprimir la pregunta y el llamado de la funcion
+            print("Su binario es: ")
+            traduccion_a_binario(modulos,decimal) 
+        #Si entrada vale 3 continuar
         elif entrada==3:
-            #Finalizar programa a solicitud del usuario
+            #Despedir al usuario y terminar con el programa
             print("Adios")
+            break
+        #Cualquier otra cosa continuar
         else:
-            #Finalizar programa por que el usuario no sabe leer :D
+            #Imprimir el texto y terminar el programa
             print("Ingrese un valor valido la proxima vez.")
             break
 #Funcion menu
 def menu():
-    #Impresion de opciones disponibles para el usuario
+    #Imprimir las opciones
     print("Ingrese 1 si desea traducir codigo binario a decimal.")
     print("Ingrese 2 si desea traducir decimal a codigo binario. ")
     print("Ingrese 3 si quiere salir.")
 
-#Funcion de pruebas :D
+#Funcion de pruebas
 def pruebas():
-    #El resultado tendria que ser 6, 7, 14
+    #Imprimir los valores de distintas traducciones y viceversa 
     print(binario_a_decimal(110))
     print(binario_a_decimal(111))
     print(binario_a_decimal(1110))
+    traduccion_a_binario([],6)
+    traduccion_a_binario([],7)
+    traduccion_a_binario([],14)
     
 
 #pruebas()
