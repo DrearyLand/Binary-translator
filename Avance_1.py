@@ -1,8 +1,12 @@
-#Funcion para el proceso de binafrio a decimal
+''' Funcion para el proceso de binafrio a decimal
+    Entradas:
+    Salidas:
+    Temas: '''
 def binario_a_decimal(binario):
     #Declaracion de variables necesarias
     potencia =1
     decimal= 0
+    binario = int(binario)
     #Repetir proceso mientras binario mayor que0
     while binario>0:
         #Declaramos la variable residuo para obtener el residuo de num entre 10
@@ -15,7 +19,10 @@ def binario_a_decimal(binario):
         potencia = potencia * 2
     return decimal
 
-#Funcion para el proceso de decimal a binario llamando una lista vacia y el valor ingresado
+''' Funcion para el proceso de decimal a binario llamando una lista vacia y el valor ingresado
+    Entradas:
+    Salidas:
+    Temas: '''
 def traduccion_a_binario(modulos,decimal):
     #Repetir proceso mientras decimal no sea 0
     while decimal != 0: 
@@ -37,7 +44,58 @@ def traduccion_a_binario(modulos,decimal):
     print()
 
 
-#Declaramos funcion main en la cual vamos a llamar las distintas funciones del programa
+def dividir_entrada(binarioStr):
+    chunks = []
+    if len(binarioStr)>=8:
+        binario = 0
+        residuo=len(binarioStr)%8
+        if residuo != 0:
+            auxiliar=""
+            tamaño=len(binarioStr)+8
+            for i in range(8-residuo):
+                auxiliar+="0"
+            auxiliar+=binarioStr
+            binarioStr=auxiliar
+            print(auxiliar)
+        for i in range(0,len(binarioStr),8):
+            if i+8<len(binarioStr):
+                chunks.append(binarioStr[i:i+8])
+            else:
+                chunks.append(binarioStr[i:len(binarioStr)])
+        for i in range(len(chunks)):
+            binario = chunks[i]
+            print(binario_a_decimal(binario))
+    else:
+        tamaño=len(binarioStr)
+        auxiliar=""
+        for i in range(8-tamaño):
+            auxiliar+="0"
+        auxiliar+=binarioStr
+        dividir_entrada(auxiliar)
+
+
+
+
+
+
+def validacion(binarioStr):
+    valido = False
+    while valido==False:
+        for elemento in binarioStr:
+            if elemento!='0' and elemento!="1":
+                print("Por favor ingrese solo 0 o 1, tampoco aceptamos espacios")
+                binarioStr = input("Ingrese el numero binario: ")
+                valido = False
+                break
+            else:
+                valido = True
+    return binarioStr    
+
+
+''' Declaramos funcion main en la cual vamos a llamar las distintas funciones del programa
+    Entradas:
+    Salidas:
+    Temas: '''
 def main():
     #Iniciamos un bucle para mostrar el menu y seleccionar alguna funcion
     while True:
@@ -48,13 +106,14 @@ def main():
         #Si entrada vale 1 continuar
         if entrada==1:
             #Entrada del dato binario
-            binario = int(input("Ingrese el numero binario: "))
-            #Imprimir el llamado de la funcion
-            print("El decimal resultante es: \n",binario_a_decimal(binario))
+            binarioStr = input("Ingrese el numero binario: ")
+            #binario_valido=validacion(binarioStr)
+            #dividir_entrada(binario_valido)
+            dividir_entrada(binarioStr)
         #Si entrada vale 2 continuar
         elif entrada==2:
             #Entrada de dato numerico
-            decimal = int(input("Ingrese número:"))
+            decimal = int(input("Ingrese número entero:"))
             #Declaracion de lista
             modulos=[]
             #Imprimir la pregunta y el llamado de la funcion
