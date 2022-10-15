@@ -1,3 +1,12 @@
+'''
+Proyecto Traductor de Binario
+El programa pregunta al usuario por que quiere traducir,
+recibe su respuesta y le pide el dato que quisiera traducir.
+Finalmente por operaciones aritmeticas y comparativas, 
+muestra lo solicitado en su respectiva traduccion.
+'''
+
+
 ''' Funcion para el proceso de binario a decimal
     Entradas: binario variable string
     Salidas: decimal variable numerica
@@ -190,8 +199,8 @@ def main():
 '''Funcion menu'''
 def menu():
     #Imprimir las opciones
-    print("Ingrese 1 si desea traducir codigo binario a decimal.")
-    print("Ingrese 2 si desea traducir decimal a codigo binario. ")
+    print("Ingrese 1 si desea traducir codigo binario a Texto/Ascii.")
+    print("Ingrese 2 si desea traducir Texto/Ascii a codigo binario. ")
     print("Ingrese 3 si quiere salir.")
 
 '''Funcion de pruebas'''
