@@ -1,13 +1,13 @@
-''' Funcion para el proceso de binafrio a decimal
-    Entradas:
-    Salidas:
-    Temas: '''
+''' Funcion para el proceso de binario a decimal
+    Entradas: binario variable string
+    Salidas: decimal variable numerica
+    Temas: Ciclos, Calculos Aritmeticos y Funciones'''
 def binario_a_decimal(binario):
     #Declaracion de variables necesarias
     potencia =1
     decimal= 0
-    binario = int(binario)
-    #Repetir proceso mientras binario mayor que0
+    binario=int(binario)
+    #Repetir proceso mientras binario mayor que
     while binario>0:
         #Declaramos la variable residuo para obtener el residuo de num entre 10
         residuo = binario % 10
@@ -17,13 +17,18 @@ def binario_a_decimal(binario):
         decimal = decimal + residuo * potencia
         #Multiplicamos la potencia por 2
         potencia = potencia * 2
-    return decimal
+    conversion_a_texto(decimal)
+    # conversion_a_binario(decimal_lista)
+
 
 ''' Funcion para el proceso de decimal a binario llamando una lista vacia y el valor ingresado
-    Entradas:
-    Salidas:
-    Temas: '''
-def traduccion_a_binario(modulos,decimal):
+    Entradas: modulos variable tipo String/Lista de caracteres, decimal variable numerica
+    Salidas: Imprime la lista/String ya traducida 
+    Temas: Listas, Ciclos, Calculos matematicos y Funciones'''
+def traduccion_a_binario(decimal):
+    #Declaramos variables/listas necesarias
+    decimal=int(decimal)
+    modulos=[]
     #Repetir proceso mientras decimal no sea 0
     while decimal != 0: 
         #Obtenemos el residuo de la division decim al entre 2
@@ -34,21 +39,29 @@ def traduccion_a_binario(modulos,decimal):
         modulos.append(residuo)
         #Le asignamos el valor del cociente a decimal
         decimal = cociente 
+    #En caso de faltar digitos agregar "0" para completar la cadena de 8 digitos
+    while len(modulos)!=8:
+        modulos.append(0)
     #Invertimos el orden de la lista
     modulos_invertidos=modulos[::-1]
-
-    #Para la variable i en modulos invertidos repetir
     for i in modulos_invertidos:
         #Imprimir el valor de i, el cual es respectivamente cada caracter del binario 
-        print(i, end = '')
-    print()
+        print(i, end='')
 
+    
 
+''' Funcion para la division de caracteres de un valor binario/string
+    Entradas: binarioStr variable string/Lista de caracteres
+    Salidas: Imprimir la fucion que se llama
+    Temas: Matrices, Listas, Cadena de caracteres, Ciclos, Condicionales anidados'''
 def dividir_entrada(binarioStr):
+    #Declaramos lista
     chunks = []
+    #Si la longitud de binarioStr es mayor o igual a 8 tendra que procesar el valor
     if len(binarioStr)>=8:
         binario = 0
         residuo=len(binarioStr)%8
+        #Agregar 0 en caso de que falten para que sea multiplo de 8
         if residuo != 0:
             auxiliar=""
             tamaño=len(binarioStr)+8
@@ -56,7 +69,7 @@ def dividir_entrada(binarioStr):
                 auxiliar+="0"
             auxiliar+=binarioStr
             binarioStr=auxiliar
-            print(auxiliar)
+        #Extraemos los bytes con los siguentes ciclos for y los almacenamos en chunks, luego llamamos a binario_a_decimal con el respectivo valor binario
         for i in range(0,len(binarioStr),8):
             if i+8<len(binarioStr):
                 chunks.append(binarioStr[i:i+8])
@@ -64,7 +77,9 @@ def dividir_entrada(binarioStr):
                 chunks.append(binarioStr[i:len(binarioStr)])
         for i in range(len(chunks)):
             binario = chunks[i]
-            print(binario_a_decimal(binario))
+            binario_a_decimal(binario)
+        print('')
+    #Agregar ceros en caso de que falten para completar el byte(8 digitos)
     else:
         tamaño=len(binarioStr)
         auxiliar=""
@@ -73,13 +88,13 @@ def dividir_entrada(binarioStr):
         auxiliar+=binarioStr
         dividir_entrada(auxiliar)
 
-
-
-
-
-
+''' Funcion para validar el tecleo del usuario
+    Entradas:binarioStr variable string
+    Salidas: binarioStr o impresion de error
+    Temas: Funciones, Condicionales, Ciclos anidados y boleanos'''
 def validacion(binarioStr):
     valido = False
+    #Si la validacion es falasa repetir hasta que el usuario de un valor binario para poder procesarlo
     while valido==False:
         for elemento in binarioStr:
             if elemento!='0' and elemento!="1":
@@ -91,11 +106,55 @@ def validacion(binarioStr):
                 valido = True
     return binarioStr    
 
+''' Funcion para convertir el valor decimal calculado a un respectivo caracter y formar una cadena
+    Entradas: decimal variable numerica
+    Salidas: Imprime cadena de caracteres final
+    Temas: Funciones, Condicionales, Ciclos, Listas y Conexion de archivos'''
+def conversion_a_texto(decimal):
+    #Obtener los archivos necesarios
+    file = open('listadecimal.txt', 'r+')
+    file2 = open('listaascii.txt','r+')
+    #Leer los archivos y considerarlos como listas
+    read2=file2.read().splitlines()
+    read = file.read().splitlines()
+    final = []
+    #Si el valor decimal coincide con algun punto de la lista, agregar su respectiva traduccion
+    if str(decimal)==read[decimal-32]:
+        final.append(read2[decimal-32])
+    #Imprimir la lista donde guardamos cada decimal traducido
+    for i in final:
+        print(i, end='')
+    #Cerrar archivos
+    file.close()
+    file2.close()
 
-''' Declaramos funcion main en la cual vamos a llamar las distintas funciones del programa
-    Entradas:
-    Salidas:
-    Temas: '''
+''' Funcion para convertir el valor caracter obtenido a un respecitivo valor decimal
+    Entradas: caracter variable de caracter
+    Salidas: llama a la funcion traduccion_a_binario con el valor de i respectivo a cada caracter
+    Temas: Funciones, Condicionales, Ciclos anidados, Listas y Conexion de archivos'''
+def conversion_a_binario(caracter):
+    #Obtener archivos necesarios
+    file = open('listadecimal.txt','r')
+    file2 = open('listaascii.txt','r')
+    #Leer los archivos y considerarlos como listas
+    read2=file2.read().splitlines()
+    read = file.read().splitlines()
+    final = []
+    #Con el uso ciclos anidados verificar si el valor ingresado en tal posicion de la cadena ingresada es igual a algun valor del archivo
+    for j in range(len(caracter)):
+        for i in range(len(read2)):
+            if caracter[j]==read2[i]:
+                final.append(read[i])    
+    #LLamar a la funcion traduccion_a_binario con el respectivo valor de i
+    for i in final:
+        traduccion_a_binario(i)
+    print('')
+    #Cerrar archivos
+    file.close()
+    file2.close()
+    
+''' Funcion que lleva la interaccion con el usuario y logica del programa
+    Temas: Funciones, Ciclos y condicionales '''
 def main():
     #Iniciamos un bucle para mostrar el menu y seleccionar alguna funcion
     while True:
@@ -107,18 +166,16 @@ def main():
         if entrada==1:
             #Entrada del dato binario
             binarioStr = input("Ingrese el numero binario: ")
-            #binario_valido=validacion(binarioStr)
-            #dividir_entrada(binario_valido)
-            dividir_entrada(binarioStr)
+            binario_valido=validacion(binarioStr)
+            print("Su texto es: ")
+            dividir_entrada(binario_valido)
         #Si entrada vale 2 continuar
         elif entrada==2:
             #Entrada de dato numerico
-            decimal = int(input("Ingrese número entero:"))
-            #Declaracion de lista
-            modulos=[]
+            txt = input("Ingrese un texto:")
             #Imprimir la pregunta y el llamado de la funcion
             print("Su binario es: ")
-            traduccion_a_binario(modulos,decimal) 
+            conversion_a_binario(txt) 
         #Si entrada vale 3 continuar
         elif entrada==3:
             #Despedir al usuario y terminar con el programa
@@ -129,23 +186,23 @@ def main():
             #Imprimir el texto y terminar el programa
             print("Ingrese un valor valido la proxima vez.")
             break
-#Funcion menu
+
+'''Funcion menu'''
 def menu():
     #Imprimir las opciones
     print("Ingrese 1 si desea traducir codigo binario a decimal.")
     print("Ingrese 2 si desea traducir decimal a codigo binario. ")
     print("Ingrese 3 si quiere salir.")
 
-#Funcion de pruebas
+'''Funcion de pruebas'''
 def pruebas():
     #Imprimir los valores de distintas traducciones y viceversa 
-    print(binario_a_decimal(110))
-    print(binario_a_decimal(111))
-    print(binario_a_decimal(1110))
-    traduccion_a_binario([],6)
-    traduccion_a_binario([],7)
-    traduccion_a_binario([],14)
-    
+    dividir_entrada("01101000011011110110110001100001001000000110110101110101011011100110010001101111")
+    dividir_entrada("0110001101100001011011000110100101100110011010010110001101100001011000110110100101101111011011100010000000101011001100010011000000110000")
+    dividir_entrada("0100110001101111011100100110010101101101001000000110100101110000011100110111010101101101")
+    conversion_a_binario("hola mundo")
+    conversion_a_binario("calificacion +100")
+    conversion_a_binario("Lorem ipsum")
 
 #pruebas()
 main()
