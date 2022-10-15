@@ -13,15 +13,15 @@ El programa corre dentro de la terminal (Windows) o en interpretadores como Visu
 
 # Algoritmo
 ## Entrada:
-Dato entero para selección en el menú
-Datos en binario o en texto
+- Dato entero para selección en el menú
+- Datos en binario o en texto
 ## Proceso:
-Preguntar al usuario que dato desea ingresar para identificar el tipo de dato
-Separar los caracteres y por métodos matemáticos conseguir el valor decimal
-Comparar cada valor decimal entre las listas/archivos de texto
-Obtener la respectiva traducción de cada carácter/cadena
-Formar nuevamente la cadena de caracteres
-Mostrar el conjunto de caracteres en su respectiva traducción
+- Preguntar al usuario que dato desea ingresar para identificar el tipo de dato
+- Separar los caracteres y por métodos matemáticos conseguir el valor decimal
+- Comparar cada valor decimal entre las listas/archivos de texto
+- Obtener la respectiva traducción de cada carácter/cadena
+- Formar nuevamente la cadena de caracteres
+- Mostrar el conjunto de caracteres en su respectiva traducción
 ## Salida:
-Datos obtenidos por el programa
+- Datos obtenidos por el programa
 
