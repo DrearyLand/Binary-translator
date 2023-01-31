@@ -8,7 +8,7 @@ The program consists of asking the user if he is interested in translating ASCII
 The program runs inside the terminal (Windows) or in interpreters like Visual Studio Code with Python 3.
 - First you will have to download the zip available on GitHub.
 - Then unzip the file
-- Open the terminal and type Python Avance_1.py
+- Open the terminal and type Python Binary_Translator.py
 - Once done, enjoy the program :D
 
 # Algorithm
@@ -25,3 +25,5 @@ The program runs inside the terminal (Windows) or in interpreters like Visual St
 ## Output:
 - Data obtained by the program
 
+##Note
+You will need the txt files to use the program
