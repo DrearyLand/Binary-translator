@@ -1,128 +1,126 @@
 '''
-Proyecto Traductor de Binario
-El programa pregunta al usuario por que quiere traducir,
-recibe su respuesta y le pide el dato que quisiera traducir.
-Finalmente por operaciones aritmeticas y comparativas, 
-muestra lo solicitado en su respectiva traduccion.
+Binary Translator Project
+The program asks the user what he wants to translate,
+receives your response and asks for the data you would like to translate.
+Finally by arithmetic and comparative operations,
+shows what was requested in its respective translation.
 '''
 
 
-''' Funcion para el proceso de binario a decimal
-    Entradas: binario variable string
-    Salidas: decimal variable numerica
-    Temas: Ciclos, Calculos Aritmeticos y Funciones'''
-def binario_a_decimal(binario):
-    #Declaracion de variables necesarias
-    potencia =1
-    decimal= 0
-    binario=int(binario)
-    #Repetir proceso mientras binario mayor que
-    while binario>0:
-        #Declaramos la variable residuo para obtener el residuo de num entre 10
-        residuo = binario % 10
-        #Le damos el nuevo valor a num
-        binario = binario // 10
-        #Agregamos a la variable decimal el residuo multiplicando a la potencia
-        decimal = decimal + residuo * potencia
-        #Multiplicamos la potencia por 2
-        potencia = potencia * 2
-    conversion_a_texto(decimal)
-    # conversion_a_binario(decimal_lista)
+''' Function for processing from binary to decimal
+     Inputs: binary variable string
+     Outputs: decimal numeric variable
+     Topics: Cycles, Arithmetic Calculations and Functions'''
+def binary_to_decimal(binary):
+    #Declaration of necessary variables
+    power = 1
+    decimal = 0
+    binary = int(binary)
+    #Repit process while binary is greater than
+    while binary > 0:
+        #We declare the remainder variable to obtain the remainder of num between 10
+        remainder = binary % 10
+        #Replace the value of binary
+        binary = binary // 10
+        #Add to the actual value of decimal the remider times the power
+        decimal = decimal + remainder * power
+        #Multiply the power by two
+        power = power * 2
+    conversion_to_ASCII(decimal)
 
-
-''' Funcion para el proceso de decimal a binario llamando una lista vacia y el valor ingresado
-    Entradas: modulos variable tipo String/Lista de caracteres, decimal variable numerica
-    Salidas: Imprime la lista/String ya traducida 
-    Temas: Listas, Ciclos, Calculos matematicos y Funciones'''
-def traduccion_a_binario(decimal):
-    #Declaramos variables/listas necesarias
+''' Function to process from decimal to binary by calling an empty list and the entered value
+     Inputs: String type variable modules / Character list, decimal numeric variable
+     Outputs: Prints the already translated list/String
+     Topics: Lists, Cycles, Mathematical calculations and Functions'''
+def translate_to_binary(decimal):
+    # We declare necessary variables/lists
     decimal=int(decimal)
-    modulos=[]
-    #Repetir proceso mientras decimal no sea 0
+    modules=[]
+    #Repeat process while decimal is not 0
     while decimal != 0: 
-        #Obtenemos el residuo de la division decim al entre 2
-        residuo = decimal%2
-        #Obtenemos el cociente de la misma division
-        cociente = decimal//2
-        #Agregamos el valor del residuo a la lista
-        modulos.append(residuo)
-        #Le asignamos el valor del cociente a decimal
-        decimal = cociente 
-    #En caso de faltar digitos agregar "0" para completar la cadena de 8 digitos
-    while len(modulos)!=8:
-        modulos.append(0)
-    #Invertimos el orden de la lista
-    modulos_invertidos=modulos[::-1]
-    for i in modulos_invertidos:
-        #Imprimir el valor de i, el cual es respectivamente cada caracter del binario 
+        #We get the reminder of the decimal division by 2
+        reminder = decimal % 2
+        #We get the quotient of the same division
+        quotient = decimal // 2
+        #We add the value of the reminder to the list
+        modules.append(reminder)
+        #We assign the value of the quotient to decimal
+        decimal = quotient 
+    #In case of missing digits add "0" to complete the 8-digit string
+    while len(modules) != 8:
+        modules.append(0)
+    #Reverse the order of the list
+    inverted_modules = modules[::-1]
+    for i in inverted_modules:
+        #Print the value of i, which is respectively each character of the binary 
         print(i, end='')
 
     
 
-''' Funcion para la division de caracteres de un valor binario/string
-    Entradas: binarioStr variable string/Lista de caracteres
-    Salidas: Imprimir la fucion que se llama
-    Temas: Matrices, Listas, Cadena de caracteres, Ciclos, Condicionales anidados'''
-def dividir_entrada(binarioStr):
-    #Declaramos lista
+''' Function for character division of a binary/string value
+     Inputs: binaryStr variable string/List of characters
+     Outputs: Print the function that is called
+     Topics: Arrays, Lists, String, Loops, Nested Conditionals'''
+def split_input(binaryStr):
+    #We declare an empty list
     chunks = []
-    #Si la longitud de binarioStr es mayor o igual a 8 tendra que procesar el valor
-    if len(binarioStr)>=8:
-        binario = 0
-        residuo=len(binarioStr)%8
-        #Agregar 0 en caso de que falten para que sea multiplo de 8
-        if residuo != 0:
-            auxiliar=""
-            tamaño=len(binarioStr)+8
-            for i in range(8-residuo):
-                auxiliar+="0"
-            auxiliar+=binarioStr
-            binarioStr=auxiliar
-        #Extraemos los bytes con los siguentes ciclos for y los almacenamos en chunks, luego llamamos a binario_a_decimal con el respectivo valor binario
-        for i in range(0,len(binarioStr),8):
-            if i+8<len(binarioStr):
-                chunks.append(binarioStr[i:i+8])
+    #If the length of binaryStr is greater than or equal to 8 it will have to process the value
+    if len(binaryStr) >= 8:
+        binary = 0
+        reminder = len(binaryStr) % 8
+        #Add 0 in case they are missing to make it a multiple of 8
+        if reminder != 0:
+            auxiliar = ""
+            size = len(binaryStr) + 8
+            for i in range(8 - reminder):
+                auxiliar += "0"
+            auxiliar+=binaryStr
+            binaryStr=auxiliar
+        #We extract the bytes with the following for loops and store them in chunks, then call binary_to_decimal with the respective binary value
+        for i in range(0,len(binaryStr),8):
+            if i+8<len(binaryStr):
+                chunks.append(binaryStr[i:i+8])
             else:
-                chunks.append(binarioStr[i:len(binarioStr)])
+                chunks.append(binaryStr[i:len(binaryStr)])
         for i in range(len(chunks)):
-            binario = chunks[i]
-            binario_a_decimal(binario)
+            binary = chunks[i]
+            binary_to_decimal(binary)
         print('')
-    #Agregar ceros en caso de que falten para completar el byte(8 digitos)
+    #Add zeros in case they are missing to complete the byte (8 digits)
     else:
-        tamaño=len(binarioStr)
-        auxiliar=""
-        for i in range(8-tamaño):
-            auxiliar+="0"
-        auxiliar+=binarioStr
-        dividir_entrada(auxiliar)
+        size = len(binaryStr)
+        auxiliar = ""
+        for i in range(8-size):
+            auxiliar += "0"
+        auxiliar += binaryStr
+        split_input(auxiliar)
 
-''' Funcion para validar el tecleo del usuario
-    Entradas:binarioStr variable string
-    Salidas: binarioStr o impresion de error
-    Temas: Funciones, Condicionales, Ciclos anidados y boleanos'''
-def validacion(binarioStr):
-    valido = False
-    #Si la validacion es falasa repetir hasta que el usuario de un valor binario para poder procesarlo
-    while valido==False:
-        for elemento in binarioStr:
-            if elemento!='0' and elemento!="1":
+''' Function to validate the user's keyboard 
+    Inputs: binaryStr variable string 
+    Outputs: binaryStr or print error 
+    Topics: Functions, Conditionals, nested and boolean loops'''
+def validation(binaryStr):
+    valid = False
+    #If the validation is false, repeat until the user gives a binary value to be able to process it.
+    while valid == False:
+        for element in binaryStr:
+            if element != '0' and element != "1":
                 print("Por favor ingrese solo 0 o 1, tampoco aceptamos espacios")
-                binarioStr = input("Ingrese el numero binario: ")
-                valido = False
+                binaryStr = input("Ingrese el numero binario: ")
+                valid = False
                 break
             else:
-                valido = True
-    return binarioStr    
+                valid = True
+    return binaryStr    
 
-''' Funcion para convertir el valor decimal calculado a un respectivo caracter y formar una cadena
-    Entradas: decimal variable numerica
-    Salidas: Imprime cadena de caracteres final
-    Temas: Funciones, Condicionales, Ciclos, Listas y Conexion de archivos'''
-def conversion_a_texto(decimal):
+''' Function to convert the calculated decimal value to a respective character and form a string
+     Inputs: decimal numeric variable
+     Outputs: Print final character string
+     Topics: Functions, Conditionals, Loops, Lists and File Connections'''
+def conversion_to_ASCII(decimal):
     #Obtener los archivos necesarios
-    file = open('listadecimal.txt', 'r+')
-    file2 = open('listaascii.txt','r+')
+    file = open('decimal_List.txt', 'r+')
+    file2 = open('ASCII_List.txt','r+')
     #Leer los archivos y considerarlos como listas
     read2=file2.read().splitlines()
     read = file.read().splitlines()
@@ -137,81 +135,81 @@ def conversion_a_texto(decimal):
     file.close()
     file2.close()
 
-''' Funcion para convertir el valor caracter obtenido a un respecitivo valor decimal
-    Entradas: caracter variable de caracter
-    Salidas: llama a la funcion traduccion_a_binario con el valor de i respectivo a cada caracter
+''' Funcion para convertir el valor character obtenido a un respecitivo valor decimal
+    inputs: character variable de character
+    Salidas: llama a la funcion translate_to_binary con el valor de i respectivo a cada character
     Temas: Funciones, Condicionales, Ciclos anidados, Listas y Conexion de archivos'''
-def conversion_a_binario(caracter):
-    #Obtener archivos necesarios
-    file = open('listadecimal.txt','r')
-    file2 = open('listaascii.txt','r')
-    #Leer los archivos y considerarlos como listas
-    read2=file2.read().splitlines()
+def conversion_to_binary(character):
+    #Get necessary files
+    file = open('decimal_List.txt','r')
+    file2 = open('ASCII_List.txt','r')
+    #Read the files and consider them as lists
+    read2 = file2.read().splitlines()
     read = file.read().splitlines()
     final = []
-    #Con el uso ciclos anidados verificar si el valor ingresado en tal posicion de la cadena ingresada es igual a algun valor del archivo
-    for j in range(len(caracter)):
+    #With the use of nested loops, check if the value entered in that position of the entered string is equal to some value in the file
+    for j in range(len(character)):
         for i in range(len(read2)):
-            if caracter[j]==read2[i]:
+            if character[j]==read2[i]:
                 final.append(read[i])    
-    #LLamar a la funcion traduccion_a_binario con el respectivo valor de i
+    #Call the function translate_to_binary with the respective value of i
     for i in final:
-        traduccion_a_binario(i)
+        translate_to_binary(i)
     print('')
-    #Cerrar archivos
+    #Close files
     file.close()
     file2.close()
     
-''' Funcion que lleva la interaccion con el usuario y logica del programa
-    Temas: Funciones, Ciclos y condicionales '''
+''' Function that handles the interaction with the user and program logic
+     Topics: Functions, Loops and Conditionals '''
 def main():
-    #Iniciamos un bucle para mostrar el menu y seleccionar alguna funcion
+    #We start a loop to show the menu and select some function
     while True:
-        #Llamamos a la funcion menu para que muestre las opciones
+        #We call the function menu to show the options
         menu()
-        #Entrada de datos
-        entrada = int(input())
-        #Si entrada vale 1 continuar
-        if entrada==1:
-            #Entrada del dato binario
-            binarioStr = input("Ingrese el numero binario: ")
-            binario_valido=validacion(binarioStr)
-            print("Su texto es: ")
-            dividir_entrada(binario_valido)
-        #Si entrada vale 2 continuar
-        elif entrada==2:
-            #Entrada de dato numerico
-            txt = input("Ingrese un texto:")
-            #Imprimir la pregunta y el llamado de la funcion
+        #Data input
+        entry = int(input())
+        #If input is 1 continue
+        if entry == 1:
+            #Binary data input
+            binaryStr = input("Enter the binary number: ")
+            binario_valid = validation(binaryStr)
+            print("Your text is: ")
+            split_input(binario_valid)
+        #If input is 2 continue
+        elif entry == 2:
+            #Numeric data entry
+            txt = input("Enter a text:")
+            #Print the question and the function call
             print("Su binario es: ")
-            conversion_a_binario(txt) 
-        #Si entrada vale 3 continuar
-        elif entrada==3:
-            #Despedir al usuario y terminar con el programa
-            print("Adios")
+            conversion_to_binary(txt) 
+        #If input is 3 continue
+        elif entry == 3:
+            #Say Goodbye to the user and end the program
+            print("Bye")
             break
-        #Cualquier otra cosa continuar
+        #Anything else continue
         else:
-            #Imprimir el texto y terminar el programa
-            print("Ingrese un valor valido la proxima vez.")
+            #Print the text and end the program
+            print("Enter a valid value next time.")
             break
 
-'''Funcion menu'''
+'''Function menu'''
 def menu():
-    #Imprimir las opciones
-    print("Ingrese 1 si desea traducir codigo binario a Texto/Ascii.")
-    print("Ingrese 2 si desea traducir Texto/Ascii a codigo binario. ")
-    print("Ingrese 3 si quiere salir.")
+    #Print the options
+    print("Enter 1 if you want to translate binary code to Text/ASCII.")
+    print("Enter 2 if you want to translate Text/ASCII to binary code. ")
+    print("Enter 3 if you want to exit.")
 
-'''Funcion de pruebas'''
-def pruebas():
-    #Imprimir los valores de distintas traducciones y viceversa 
-    dividir_entrada("01101000011011110110110001100001001000000110110101110101011011100110010001101111")
-    dividir_entrada("0110001101100001011011000110100101100110011010010110001101100001011000110110100101101111011011100010000000101011001100010011000000110000")
-    dividir_entrada("0100110001101111011100100110010101101101001000000110100101110000011100110111010101101101")
-    conversion_a_binario("hola mundo")
-    conversion_a_binario("calificacion +100")
-    conversion_a_binario("Lorem ipsum")
+'''Test function'''
+def test():
+    #Print the values of different translations and vice versa
+    split_input("01101000011011110110110001100001001000000110110101110101011011100110010001101111")
+    split_input("0110001101100001011011000110100101100110011010010110001101100001011000110110100101101111011011100010000000101011001100010011000000110000")
+    split_input("0100110001101111011100100110010101101101001000000110100101110000011100110111010101101101")
+    conversion_to_binary("hola mundo")
+    conversion_to_binary("calificacion +100")
+    conversion_to_binary("Lorem ipsum")
 
-#pruebas()
+#test()
 main()
